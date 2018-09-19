@@ -28,6 +28,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-549">
               <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+<<<<<<< HEAD
             </state>
           </provider>
         </entry>
@@ -37,6 +38,8 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2521">
               <caret line="347" column="4" lean-forward="true" selection-start-line="347" selection-start-column="4" selection-end-line="347" selection-end-column="4" />
+=======
+>>>>>>> Add gitignored files
             </state>
           </provider>
         </entry>
@@ -155,12 +158,20 @@
       <workItem from="1536000306657" duration="5069000" />
       <workItem from="1536508074096" duration="3599000" />
       <workItem from="1536699833098" duration="2000" />
+<<<<<<< HEAD
       <workItem from="1537326174776" duration="451000" />
+=======
+      <workItem from="1537326174776" duration="174000" />
+>>>>>>> Add gitignored files
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="9121000" />
+=======
+    <option name="totallyTimeSpent" value="8844000" />
+>>>>>>> Add gitignored files
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -298,6 +309,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-549">
           <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -305,6 +317,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2521">
           <caret line="347" column="4" lean-forward="true" selection-start-line="347" selection-start-column="4" selection-end-line="347" selection-end-column="4" />
+=======
+>>>>>>> Add gitignored files
         </state>
       </provider>
     </entry>
