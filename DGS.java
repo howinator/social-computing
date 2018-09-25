@@ -5,48 +5,27 @@ public class DGS {
         String fileName = args[0];
         ParseFile fileParser = new ParseFile();
         int[][] matrix = fileParser.parseFile(fileName);
+        ResultTuple result = runDGS(matrix);
     }
 
-    class TwoTuple<T, U> {
-        public final T first;
-        public final U second;
-        TwoTuple(T first, U second) {
-            this.first = first;
-            this.second = second;
+    private static Integer findMatchingWeight(List<TwoTuple<Integer, Integer>> matching, int[][] matrix) {
+        Integer matchingSum = 0;
+        for (TwoTuple<Integer, Integer> match: matching) {
+            matchingSum += matrix[match.first][match.second];
         }
-        public Integer firstToInt() {
-            return (Integer) this.first;
-        }
-        public Float firstToFloat() {
-            return (Float) this.first;
-        }
-        public Integer secondToInt() {
-            return (Integer) this.second;
-        }
-        public Float secondToFloat() {
-            return (Float) this.second;
-        }
+        return matchingSum;
     }
 
-    class ResultTuple {
-        public final Float maxWeight;
-        public final List<TwoTuple<Integer, Integer>> pairings;
-        public ResultTuple(List<TwoTuple<Integer, Integer>> pairings, Float maxWeight) {
-            this.pairings = pairings;
-            this.maxWeight = maxWeight;
-        }
-    }
-
-    public ResultTuple runDGS(int[][] matrix) {
+    private static ResultTuple runDGS(int[][] matrix) {
         TwoTuple maxPayoffTuple;
         Integer maxGood;
         Float maxPayoff;
         int numBuyers = matrix.length;
-        List<Float> price = new ArrayList<>(numBuyers);
-        List<Integer> owner = new ArrayList<>(numBuyers);
+        List<Float> price = new ArrayList<>(Collections.nCopies(numBuyers, (float) 0.0));
+        List<Integer> owner = new ArrayList<>(Collections.nCopies(numBuyers, 0));
         Queue<Integer> queue = new ArrayDeque<>(numBuyers);
         int matchingSize = numBuyers;
-        float delta = 1 / (matchingSize + 1);
+        float delta = (float) (1.0 / (float) (matchingSize + 1));
         for (int i = 0; i < numBuyers; i++) {
             price.set(i, (float) 0.0);
             owner.set(i, null);
@@ -59,7 +38,7 @@ public class DGS {
             maxGood = maxPayoffTuple.firstToInt();
             maxPayoff = maxPayoffTuple.secondToFloat();
             if (maxPayoff >= 0) {
-                queue.add(owner.get(maxGood));
+                if (owner.get(maxGood) != null) queue.add(owner.get(maxGood));
                 owner.set(maxGood, i);
                 price.set(maxGood, price.get(maxGood) + delta);
             }
@@ -67,23 +46,23 @@ public class DGS {
         }
 
         List<TwoTuple<Integer, Integer>> resultList = constructResultList(owner);
-        Float maxWeight = Collections.max(price);
+        Integer matchingWeight = findMatchingWeight(resultList, matrix);
 
 
-        return new ResultTuple(resultList, maxWeight);
+        return new ResultTuple(resultList, matchingWeight);
 
     }
 
-    private List<TwoTuple<Integer, Integer>> constructResultList(List<Integer> ownerList) {
+    private static List<TwoTuple<Integer, Integer>> constructResultList(List<Integer> ownerList) {
         List<TwoTuple<Integer, Integer>> resultList = new ArrayList<>();
         for (int good = 0; good < ownerList.size(); good++) {
             TwoTuple<Integer, Integer> tuple = new TwoTuple<>(good, ownerList.get(good));
-            resultList.set(good, tuple);
+            resultList.add(good, tuple);
         }
         return resultList;
     }
 
-    private TwoTuple findMaxPayoff(int[][] matrix, List<Float> prices, int numBuyers, int bidder) {
+    private static TwoTuple<Integer, Float> findMaxPayoff(int[][] matrix, List<Float> prices, int numBuyers, int bidder) {
         Float maxPayoff = null;
         Integer maxGood = null;
         for (int g=0; g < numBuyers; g++) {
@@ -93,8 +72,8 @@ public class DGS {
             }
         }
         assert maxPayoff != null;
-        TwoTuple<Integer, Float> resultTuple = new TwoTuple<>(maxGood, maxPayoff);
-        return resultTuple;
+        return new TwoTuple<>(maxGood, maxPayoff);
+//        return resultTuple;
 
     }
 

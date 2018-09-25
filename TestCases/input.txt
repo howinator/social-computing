@@ -1,4 +1,4 @@
-3  // number of rows and columns
+3
 12 2 4
 8 7 6
 7 5 2

@@ -18,6 +18,7 @@ class ParseFile {
             int currentRowNumber = 0;
             while ((text = reader.readLine()) != null) {
                 matrix[currentRowNumber] = parseLine(text, numberRowsAndColumns);
+                currentRowNumber++;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -44,6 +45,9 @@ class ParseFile {
             if (currentChar == ' ') {  // TODO should be any whitespace char?
                 rowResult[rowPosition] = Integer.parseInt(currentNumber);
                 rowPosition++;
+                currentNumber = "";
+            } else if (charNumber == stringLength - 1) {
+                rowResult[rowPosition] = Integer.parseInt(currentNumber += currentChar);
             } else {
                 currentNumber += currentChar;
             }
