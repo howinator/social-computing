@@ -26,8 +26,8 @@ public class KM {
         this.E = new boolean[this.size][this.size];
         
         // Start with basic feasible labels:
-        //   all b=0
-        //   all g=max(weights[i])
+        //   all x=0
+        //   all y=max(weights[i])
         this.xLabel = new int[size];
         this.yLabel = new int[size];
         for (int i = 0; i < size; i++) {
@@ -333,13 +333,13 @@ public class KM {
      * Input File Name argument
      */
     public static void main(String[] args) throws Exception {
-        long startTime = System.nanoTime();
         int[][] weights = parseInputFile(args[0]);
+        long startTime = System.nanoTime();
         KM km = new KM(weights);
         km.findMaxMatching();
-        km.printSolution();
         long endTime = System.nanoTime();
         long totalTime = endTime - startTime;
+        km.printSolution();
         System.out.println("Total time taken for KM is " + totalTime);
     }
     
