@@ -9,7 +9,7 @@ public class DGS {
         ResultTuple result = runDGS(matrix);
         long endTime = System.nanoTime();
         DGSOutput.outputAnswer(result);
-        System.out.println("\nTotal time taken to run DGS is " + (endTime - startTime) + " ns.");
+        System.out.println("\nTotal time taken for DGS is " + (endTime - startTime));
     }
 
     private static Integer findMatchingWeight(List<TwoTuple<Integer, Integer>> matching, int[][] matrix) {
