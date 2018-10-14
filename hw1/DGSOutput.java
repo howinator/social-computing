@@ -1,3 +1,5 @@
+package hw1;
+
 public class DGSOutput {
     public static void outputAnswer(ResultTuple result) {
         System.out.println(result.matchingWeight);
