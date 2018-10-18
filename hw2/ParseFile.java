@@ -24,8 +24,8 @@ public class ParseFile {
                 currentRowNumber++;
             }
 
-            prefLists.menPreferenceList = Arrays.copyOfRange(parseResult, 1, numberOfPairs + 1);
-            prefLists.womenPreferenceList = Arrays.copyOfRange(parseResult, numberOfPairs + 1, (numberOfPairs * 2) + 1);
+            prefLists.menPreferenceList = Arrays.copyOfRange(parseResult, 0, numberOfPairs);
+            prefLists.womenPreferenceList = Arrays.copyOfRange(parseResult, numberOfPairs, (numberOfPairs * 2));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,7 +46,7 @@ public class ParseFile {
         String[] splitString = line.split("\\s+");
         int index = 0;
         for (String ele : splitString) {
-            rowResult[index] = Integer.parseInt(ele);
+            rowResult[index] = Integer.parseInt(ele) - 1;
             index++;
         }
         return rowResult;
