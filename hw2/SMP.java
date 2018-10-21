@@ -39,25 +39,16 @@ public class SMP {
                                            int[] pickList) {
 //        Set<Integer> previouslyChosenList = previouslyChosen.;
         if (!previouslyChosen.chosenIsEmpty(choosingPerson)) {
-            Set<Integer> allChoices = new HashSet<>();
-            for (int i=0; i < numPairs; i++) {
-                allChoices.add(i);
-            }
 
             Set<Integer> alreadyChosenSet = previouslyChosen.getPreviouslyChosen(choosingPerson);
 
-            allChoices.removeAll(alreadyChosenSet);
-            Set<Integer> possibleChoices = allChoices;
-
-            if (possibleChoices.isEmpty()) {
-                return null;
-            }
-
             for (int i : pickList) {
-                if (possibleChoices.contains(i)) {
+                if (!alreadyChosenSet.contains(i)) {
                     return i;
                 }
             }
+            return  null;
+
         }
         return pickList[0];
     }
@@ -94,12 +85,12 @@ public class SMP {
             choosingPerson = freeList.pop();
 
             int topPreferencePick = SMP.getFirstUnchosenChoice(choosingPerson, numPairs, previoslyChosen, pickList[choosingPerson]);
+            previoslyChosen.addChosen(choosingPerson, topPreferencePick);
             if (!matchMap.containsKey(topPreferencePick)) {
                 matchMap.put(topPreferencePick, choosingPerson);
-                previoslyChosen.addChosen(choosingPerson, topPreferencePick);
             } else {
                 int previouslyAssignedPerson = matchMap.get(topPreferencePick);
-                if (inversePickList[topPreferencePick][choosingPerson] > inversePickList[topPreferencePick][previouslyAssignedPerson]) {
+                if (getRankOfMatch(inversePickList[topPreferencePick], choosingPerson) > getRankOfMatch(inversePickList[topPreferencePick], previouslyAssignedPerson)) {
                     freeList.push(choosingPerson);
                 } else {
                     freeList.push(previouslyAssignedPerson);
@@ -112,6 +103,15 @@ public class SMP {
            result.addChoice(matchMap.get(chosenPerson), chosenPerson);
         }
         return result;
+    }
+
+    private static Integer getRankOfMatch(int[] rankList, int matchingPerson) {
+        for (int i = 0; i < rankList.length; i++) {
+            if (matchingPerson == rankList[i]) {
+                return i;
+            }
+        }
+        return -1; // something went horribly wrong
     }
 
 }
