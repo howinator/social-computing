@@ -34,10 +34,8 @@ public class SMP {
     }
 
     private static Integer getFirstUnchosenChoice(Integer choosingPerson,
-                                           Integer numPairs,
-                                           PreviouslyChosen previouslyChosen,
-                                           int[] pickList) {
-//        Set<Integer> previouslyChosenList = previouslyChosen.;
+                                                  PreviouslyChosen previouslyChosen,
+                                                  int[] pickList) {
         if (!previouslyChosen.chosenIsEmpty(choosingPerson)) {
 
             Set<Integer> alreadyChosenSet = previouslyChosen.getPreviouslyChosen(choosingPerson);
@@ -47,7 +45,7 @@ public class SMP {
                     return i;
                 }
             }
-            return  null;
+            return null;
 
         }
         return pickList[0];
@@ -59,8 +57,6 @@ public class SMP {
         Stack<Integer> freeList = new Stack<>();
         int choosingPerson;
 
-//        Map<Integer, List<Integer>> previoslyChosenMap = new HashMap<>();
-        // maps chosenPerson to choosingPerson {chosenPerson: choosingPersion}
         Map<Integer, Integer> matchMap = new HashMap<>();
         Result result = new Result();
         switch (genderOptimality) {
@@ -84,7 +80,7 @@ public class SMP {
         while (!freeList.empty()) {
             choosingPerson = freeList.pop();
 
-            int topPreferencePick = SMP.getFirstUnchosenChoice(choosingPerson, numPairs, previoslyChosen, pickList[choosingPerson]);
+            int topPreferencePick = SMP.getFirstUnchosenChoice(choosingPerson, previoslyChosen, pickList[choosingPerson]);
             previoslyChosen.addChosen(choosingPerson, topPreferencePick);
             if (!matchMap.containsKey(topPreferencePick)) {
                 matchMap.put(topPreferencePick, choosingPerson);
@@ -100,7 +96,7 @@ public class SMP {
         }
 
         for (Integer chosenPerson : matchMap.keySet()) {
-           result.addChoice(matchMap.get(chosenPerson), chosenPerson);
+            result.addChoice(matchMap.get(chosenPerson), chosenPerson);
         }
         return result;
     }
