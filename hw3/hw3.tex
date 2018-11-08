@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,algorithm,algpseudocode,algorithmicx,xfrac,float}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{subproblem}[1]{\textbf{(#1)}}{}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+%If you want to title your bold things something different just make another thing exactly like this but replace "problem" with the name of the thing you want, like theorem or lemma or whatever
+
+\begin{document}
+
+%\renewcommand{\qedsymbol}{\filledbox}
+%Good resources for looking up how to do stuff:
+%Binary operators: http://www.access2science.com/latex/Binary.html
+%General help: http://en.wikibooks.org/wiki/LaTeX/Mathematics
+%Or just google stuff
+
+\title{Social Computing - Homework 3}
+\author{Howie Benefiel \(phb337\) and Kelsey Sandlin \(kk29746\) }
+\maketitle
+
+\begin{problem}{1}
+\begin{subproblem}{a}
+True. 
+Let $ S_{A} $ be the strategy chosen by Player A and $ S_{B} $ be the strategy chosen by Player B.
+In order for $ (S_{A}, S_{B}) $ to be a Nash Equilibrium, $ S_{A} $ must be the best response to $ S_{B} $ and $ S_{B} $ must also be the best response to $ S_{A} $.
+Since we know $ S_{A} $ is dominant for Player A, $ S_{A} $ must be a best response to any strategy chosen by B, including $ S_{B} $. Since $ S_{B} $ is defined as the best response to $ S_{A} $, $ (S_{A}, S_{B}) $ must be a Nash equilibrium.
+\end{subproblem}
+
+$ $ \newline
+
+\begin{subproblem}{b}
+False.
+Let $ S_{A} $ be the strategy chosen by Player A and SB be the strategy chosen by Player B.
+Since $ (S_{A}, S_{B}) $ is given to be a Nash equilibrium, we know $ S_{A} $ is the best response to $ S_{B} $ and $ S_{B} $ is the best response to $ S_{A} $.
+However, there might exist an alternative $ (SA’, SB’) $ such that $ S_{A}^{'}  \ne S_{A} $ and $ S_{B}^{'} \ne S_{B} $ and $ S_{A}^{'} + S_{B}^{'} > S_{A} +  S_{B} $.
+We can use the Presentation / Exam Study problem given in class as a counter example:
+
+\begin{table}[H]
+\begin{tabular}{lllll}
+\multicolumn{1}{l|}{} & \multicolumn{1}{l|}{Presentation} & \multicolumn{1}{l|}{Exam} &  &  \\ \cline{1-3}
+\multicolumn{1}{l|}{Presentation}  & \multicolumn{1}{l|}{  90, 90 } & \multicolumn{1}{l|}{86, 92} &  &  \\ \cline{1-3}
+\multicolumn{1}{l|}{Exam}  & \multicolumn{1}{l|}{92, 86} & \multicolumn{1}{l|}{88, 88} &  &  \\ \cline{1-3}
+                       &                       &                       &  &
+\end{tabular}
+\end{table}
+%\FloatBarrier
+Here, (Exam, Exam) is a Nash Equilibrium in which both players are playing their optimal dominant strategy, but (Presentation, Presentation) is the social-welfare maximizing choice.
+
+\end{subproblem}
+\end{problem}
+
+\begin{problem}{2}
+There are two Nash equilibria: $ (D, L) $ and $ (U, R) $.
+\end{problem}
+
+\begin{problem}{3}
+\begin{subproblem}{a}
+There is one Nash equilibrium: $ (D, R) $.
+\end{subproblem}
+
+\begin{subproblem}{b}
+There is one Nash equilibrium: $ (U, L) $.
+\end{subproblem}
+
+
+\begin{subproblem}{c}
+There are two Nash equilibria: $ (U, R) $ and $ (D, L) $.
+\end{subproblem}
+\end{problem}
+
+
+
+\end{document}
